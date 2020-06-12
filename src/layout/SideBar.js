@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { ReactComponent as SvgHome } from '../assets/images/icons/home.svg';
+import { ReactComponent as SvgBricks } from '../assets/images/icons/bricks.svg';
+import { ReactComponent as SvgCoin } from '../assets/images/icons/coin.svg';
+
 class SideBar extends Component {
   constructor(props) {
     super(props);
@@ -23,12 +27,26 @@ class SideBar extends Component {
 
     return (
       <nav className={navState}>
-        <span onClick={this.toggleMenu}>TOGGLE</span>
+        <span className="toggle" onClick={this.toggleMenu}>TOGGLE</span>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li>
+            <Link to="/" props="inicio">
+              <SvgHome />
+              <span>INÍCIO</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/obras" props="obras">
+              <SvgBricks />
+              <span>OBRAS</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/gastos">
+              <SvgCoin />
+              <span>GASTOS</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     );

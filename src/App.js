@@ -9,8 +9,8 @@ import {
 import './scss/app.scss';
 
 // Pages
-import About from './pages/About';
-import Dashboard from './pages/Dashboard';
+import Buildings from './pages/Buildings';
+import Expenses from './pages/Expenses';
 import Home from './pages/Home';
 
 // Layout
@@ -27,8 +27,8 @@ function App() {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/obras" component={Buildings} />
+              <Route path="/gastos" component={Expenses} />
             </Switch>
           </div>
         </main>
