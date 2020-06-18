@@ -1,5 +1,7 @@
 header {
   background-color: $white;
   border-bottom: 1px solid $primary;
-  padding: 15px;
+  height: $headerHeight;
+  line-height: 50px;
+  padding: 0 15px;
 }

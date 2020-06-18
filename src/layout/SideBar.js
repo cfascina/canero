@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
-import { ReactComponent as SvgHome } from '../assets/images/icons/home.svg';
-import { ReactComponent as SvgBricks } from '../assets/images/icons/bricks.svg';
-import { ReactComponent as SvgCoin } from '../assets/images/icons/coin.svg';
+// Icons
+import iconBrick from '../assets/images/icons/brick.png';
+import iconCollapse from '../assets/images/icons/collapse.png';
+import iconError from '../assets/images/icons/error.png';
+import iconHome from '../assets/images/icons/home.png';
+import iconMoney from '../assets/images/icons/money.png';
 
 class SideBar extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class SideBar extends Component {
     }
 
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.getIcon    = this.getIcon.bind(this);
   }
   
   toggleMenu() {
@@ -22,32 +26,32 @@ class SideBar extends Component {
     });    
   }
 
+  getIcon(routeName) {
+    switch(routeName) {
+      case 'Início':  return iconHome;
+      case 'Obras':   return iconBrick;
+      case 'Gastos':  return iconMoney;
+      default:        return iconError;
+    }
+  }
+
   render() {
     const navState = this.state.isMenuCollapsed ? 'collapsed' : 'expanded';
 
     return (
       <nav className={navState}>
-        <span className="toggle" onClick={this.toggleMenu}>TOGGLE</span>
-        <ul>
-          <li>
-            <Link to="/" props="inicio">
-              <SvgHome />
-              <span>INÍCIO</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/obras" props="obras">
-              <SvgBricks />
-              <span>OBRAS</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/gastos">
-              <SvgCoin />
-              <span>GASTOS</span>
-            </Link>
-          </li>
-        </ul>
+        <div className="toggle" onClick={this.toggleMenu}>
+          <img src={iconCollapse} alt="Recolher" />
+          <span>Recolher</span>
+        </div>
+        {
+          this.props.items.map((route, index) => (
+            <NavLink key={index} to={route.path} exact={route.exact}>
+              <img src={this.getIcon(route.name)} alt={route.name} />
+              <span>{route.name}</span>
+            </NavLink>
+          ))
+        }
       </nav>
     );
   }

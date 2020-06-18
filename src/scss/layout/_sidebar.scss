@@ -1,62 +1,68 @@
 nav {
   background-color: $primary;
+  font-size: 18px;
   min-height: 100vh;
 
-  &.expanded {
-    @include transition(width .5s ease);
-    width: $sideBarWidthExpanded;
-  }
-  
-  &.collapsed {
-    @include transition(width .5s ease);
-    width: $sideBarWidthCollapsed;
+  div.toggle {
+    align-items: center;
+    color: $white;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
 
-    ul {
-      li {
-        a {
-          text-align: center;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+    
+    span {
+      margin: 0 0 0 10px;
+    }
 
-          span {
-            display: none;
-          }
-        }
-      }
+    &:hover {
+      background-color: $grena;
     }
   }
 
-  span.toggle {
+  a {
+    align-items: center;
     color: $white;
-    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    text-decoration: none;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+    span {
+      margin: 0 0 0 10px;
+    }
+
+    &.active,
+    &:hover {
+      background-color: $grena;
+    }
   }
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  &.expanded {
+    @include transition(width 0.5s ease);
+    width: $sideBarExpanded;
+  }
 
-    li {
-      a {
-        color: $white;
-        display: block;
-        font-weight: 700;
-        padding: 10px;
-        text-decoration: none;
+  &.collapsed {
+    @include transition(width 0.5s ease);
+    width: $sideBarCollapsed;
 
-        svg {
-          height: 24px;
-          vertical-align: bottom;      
-          width: 24px;
-        }
-
-        span {
-          display: inline-block;
-          line-height: 24px;
-          margin: 0 0 0 10px;
-        }
-
-        &:hover {
-          background-color: $grena;
-        }
+    div.toggle,
+    a {  
+      img {
+        margin: 0 auto;
+      }
+      
+      span {
+        display: none;
       }
     }
   }

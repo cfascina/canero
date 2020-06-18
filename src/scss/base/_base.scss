@@ -2,20 +2,22 @@
 
 html,
 body {
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
 
   .app {
     display: flex;
-  
-    main {
-      background-color: $background;
-      flex: 1;
 
+    main {
+      flex: 1;
+      
       .content {
-        padding: 30px;
+        background-color: $background;
+        padding: 15px;
+        // 100vh - ($headerHeight + its border) - (2 * this block padding)
+        min-height: calc(100vh - (#{$headerHeight} + 1px) - 30px);
       }
     }
   }
