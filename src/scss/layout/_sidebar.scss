@@ -1,7 +1,9 @@
 nav {
   background-color: $primary;
+  bottom: 0;
   font-size: 18px;
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
 
   div.toggle {
     align-items: center;

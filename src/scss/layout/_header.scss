@@ -1,7 +1,7 @@
 header {
   background-color: $white;
   border-bottom: 1px solid $primary;
-  height: $headerHeight;
+  height: 50px;
   line-height: 50px;
-  padding: 0 15px;
+  padding: 0 15px 0 calc(15px + #{$sideBarCollapsed});
 }

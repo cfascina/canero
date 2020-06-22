@@ -2,16 +2,15 @@
   'abstracts/mixins',
   'abstracts/variables';
 
-// @import 'themes/default';
+@import 
+  'base/base';
 
-@import 'base/base';
-
-// @import
-//   'components/button';
+@import
+  'components/datatable';
 
 // @import
 //   'pages/button';
 
 @import
-'layout/sidebar',
-'layout/header';
+  'layout/sidebar',
+  'layout/header';

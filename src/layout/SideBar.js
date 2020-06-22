@@ -13,7 +13,7 @@ class SideBar extends Component {
     super(props);
 
     this.state = {
-      isMenuCollapsed: false
+      isMenuCollapsed: true
     }
 
     this.toggleMenu = this.toggleMenu.bind(this);

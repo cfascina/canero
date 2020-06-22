@@ -9,26 +9,24 @@ import SideBar from './layout/SideBar';
 import Header from './layout/Header';
 
 const App = ({ routes }) => (
-  <div className="app">
-    <Router>
-      <SideBar items={routes} />
-      <main>
-        <Header items={routes} />
-        <div className="content">
-          <Switch>
-            {routes.map((route, index) => (
-              <Route 
-                key={index} 
-                path={route.path} 
-                component={route.component} 
-                exact={route.exact}   
-              />
-            ))}
-          </Switch>
-        </div>
-      </main>
-    </Router>
-  </div>
+  <Router>
+    <SideBar items={routes} />
+    <main>
+      <Header items={routes} />
+      <div className="content">
+        <Switch>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              component={route.component}
+              exact={route.exact}
+            />
+          ))}
+        </Switch>
+      </div>
+    </main>
+  </Router>
 );
 
 export default App;
