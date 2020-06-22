@@ -1,5 +1,5 @@
 nav {
-  background-color: $primary;
+  background-color: $project01;
   bottom: 0;
   font-size: 18px;
   position: absolute;
@@ -22,7 +22,7 @@ nav {
     }
 
     &:hover {
-      background-color: $grena;
+      background-color: $project03;
     }
   }
 
@@ -44,7 +44,7 @@ nav {
 
     &.active,
     &:hover {
-      background-color: $grena;
+      background-color: $project03;
     }
   }
 

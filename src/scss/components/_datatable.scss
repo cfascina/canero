@@ -1,6 +1,6 @@
 .datatable {
-  background-color: $grenaLight;
-  border-bottom: 1px solid $primary;
+  background-color: $project05;
+  border-bottom: 1px solid $project01;
   display: block;
   font-size: 14px;
   max-width: 100%;
@@ -13,14 +13,14 @@ table {
   border-spacing: 0;
 
   thead {
-    background-color: $primary;
+    background-color: $project01;
     color: $white;
     font-size: 16px;
     text-align: left;
 
     tr {
       th {
-        border-right: 1px solid $grena;
+        border-right: 1px solid $project05;
 
         .sort {
           font-size: 18px;
@@ -30,12 +30,18 @@ table {
           }
 
           &.active {
-            color: #5d641c;
+            color: $project03;
           }
         }
 
         &:hover {
-          background-color: $grena;
+          background-color: $project03;
+
+          .sort {
+            &.active {
+              color: $project01;
+            }
+          }
         }
 
         &:last-child {
@@ -48,12 +54,12 @@ table {
   tbody {
     tr {
       &:hover {
-        background-color: $grena;
+        background-color: $project03;
         color: $white;
 
         td {
-          border-bottom: 1px solid $grenaLight;
-          border-right: 1px solid $grenaLight;
+          border-bottom: 1px solid $project05;
+          border-right: 1px solid $project05;
         }
       }
     }
@@ -61,8 +67,8 @@ table {
 
   th,
   td {
-    border-bottom: 1px solid $grena;
-    border-right: 1px solid $grena;
+    border-bottom: 1px solid $project03;
+    border-right: 1px solid $project03;
     margin: 0;
     padding: 10px;
 

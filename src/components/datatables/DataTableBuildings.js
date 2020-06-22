@@ -51,8 +51,8 @@ function Table({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  <span className={"sort " + getColumnSorting(column, "desc")}>&#9660;</span>
                   <span className={"sort " + getColumnSorting(column, "asc")}>&#9650;</span>
+                  <span className={"sort " + getColumnSorting(column, "desc")}>&#9660;</span>
                   {column.render('label')}
                 </th>
               ))}
