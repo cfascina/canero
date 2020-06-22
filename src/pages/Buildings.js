@@ -6,8 +6,6 @@ class Buildings extends Component {
   render() {
     return (
       <div>
-        <div>Obras</div>
-        <div>DataTableBuildings</div>
         <DataTableBuildings />
       </div>
     );
