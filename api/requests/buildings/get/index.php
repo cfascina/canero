@@ -34,7 +34,7 @@
         "status" => $status,
         "default" => $default,
         "createdAt" => $created_at,
-        "updtatedAt" => $updated_at
+        "updatedAt" => $updated_at
       );
       
       array_push($buildinsgArr["body"], $rowData);

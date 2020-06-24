@@ -99,8 +99,6 @@
       $this->neighborhood = htmlspecialchars(strip_tags($this->neighborhood));
       $this->city = htmlspecialchars(strip_tags($this->city));
       $this->state = htmlspecialchars(strip_tags($this->state));
-      $this->status = htmlspecialchars(strip_tags($this->status));
-      $this->default = htmlspecialchars(strip_tags($this->default));
 
       // Bind Data
       $result->bindParam(":name", $this->name);
@@ -116,42 +114,50 @@
 
       return $result->execute() ? true : false;
     }
-
-    // TO DO
+    
     public function updateBuilding()
     {
-      $sqlQuery = "UPDATE
-                          " . $this->table . "
-                      SET
-                          name = :name, 
-                          email = :email, 
-                          age = :age, 
-                          designation = :designation, 
-                          created = :created
-                      WHERE 
-                          id = :id";
+      $sqlQuery = "
+        UPDATE " . $this->table . " AS B SET
+          B.name = :name,
+          B.zip_code = :zipCode,
+          B.address = :address,
+          B.number = :number,
+          B.complement = :complement,
+          B.neighborhood = :neighborhood,
+          B.city = :city,
+          B.state = :state,
+          B.status = :status,
+          B.default = :default,
+          B.updated_at = NOW()
+        WHERE B.id = :id";
+          
+      $result = $this->conn->prepare($sqlQuery);
 
-      $stmt = $this->conn->prepare($sqlQuery);
-
+      // Sanitize
       $this->name = htmlspecialchars(strip_tags($this->name));
-      $this->email = htmlspecialchars(strip_tags($this->email));
-      $this->age = htmlspecialchars(strip_tags($this->age));
-      $this->designation = htmlspecialchars(strip_tags($this->designation));
-      $this->created = htmlspecialchars(strip_tags($this->created));
-      $this->id = htmlspecialchars(strip_tags($this->id));
+      $this->zipCode = htmlspecialchars(strip_tags($this->zipCode));
+      $this->address = htmlspecialchars(strip_tags($this->address));
+      $this->number = htmlspecialchars(strip_tags($this->number));
+      $this->complement = htmlspecialchars(strip_tags($this->complement));
+      $this->neighborhood = htmlspecialchars(strip_tags($this->neighborhood));
+      $this->city = htmlspecialchars(strip_tags($this->city));
+      $this->state = htmlspecialchars(strip_tags($this->state));
 
-      // bind data
-      $stmt->bindParam(":name", $this->name);
-      $stmt->bindParam(":email", $this->email);
-      $stmt->bindParam(":age", $this->age);
-      $stmt->bindParam(":designation", $this->designation);
-      $stmt->bindParam(":created", $this->created);
-      $stmt->bindParam(":id", $this->id);
+      // Bind Data
+      $result->bindParam(":id", $this->id);
+      $result->bindParam(":name", $this->name);
+      $result->bindParam(":zipCode", $this->zipCode);
+      $result->bindParam(":address", $this->address);
+      $result->bindParam(":number", $this->number);
+      $result->bindParam(":complement", $this->complement);
+      $result->bindParam(":neighborhood", $this->neighborhood);
+      $result->bindParam(":city", $this->city);
+      $result->bindParam(":state", $this->state);
+      $result->bindParam(":status", $this->status);
+      $result->bindParam(":default", $this->status);
 
-      if ($stmt->execute()) {
-        return true;
-      }
-      return false;
+      return $result->execute() ? true : false;
     }
 
     // TO DO
