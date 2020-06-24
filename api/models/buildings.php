@@ -163,17 +163,16 @@
     // TO DO
     function deleteBuilding()
     {
-      $sqlQuery = "DELETE FROM " . $this->table . " WHERE id = ?";
-      $stmt = $this->conn->prepare($sqlQuery);
+      $sqlQuery = "
+        DELETE FROM " . $this->table . " 
+        WHERE id = ?";
+          
+      $result = $this->conn->prepare($sqlQuery);
+      
+      // Bind Data
+      $result->bindParam(1, $this->id);
 
-      $this->id = htmlspecialchars(strip_tags($this->id));
-
-      $stmt->bindParam(1, $this->id);
-
-      if ($stmt->execute()) {
-        return true;
-      }
-      return false;
+      return $result->execute() ? true : false;
     }
   }
 
