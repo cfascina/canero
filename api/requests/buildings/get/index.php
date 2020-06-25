@@ -11,12 +11,9 @@
 
   $building = new Building($conn);
   $result = $building->getBuildings();
-  $resultCount = $result->rowCount();
 
-  if($resultCount > 0) {
+  if($result->rowCount() > 0) {
     $buildinsgArr = array();
-    $buildinsgArr["body"] = array();
-    $buildinsgArr["resultCount"] = $resultCount;
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
@@ -37,7 +34,7 @@
         "updatedAt" => $updated_at
       );
       
-      array_push($buildinsgArr["body"], $rowData);
+      array_push($buildinsgArr, $rowData);
     }
     echo json_encode($buildinsgArr);
   }

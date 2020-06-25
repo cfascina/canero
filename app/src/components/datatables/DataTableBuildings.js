@@ -1,7 +1,25 @@
-import React from 'react';
-import { useTable, usePagination, useSortBy } from 'react-table';
+import React from "react";
+import { useTable, usePagination, useSortBy } from "react-table";
 
-import { getBuildingsColumns, getBuildings } from '../../services/Buildings';
+function setTableColumns() {
+  return(
+    [
+      { label: 'Cód.', accessor: 'id' },
+      { label: 'Nome', accessor: 'name' },
+      { label: 'Endereço', accessor: 'address' },
+      { label: 'Número', accessor: 'number' },
+      { label: 'Complemento', accessor: 'complement' },
+      { label: 'CEP', accessor: 'zipCode' },
+      { label: 'Bairro', accessor: 'neighborhood' },
+      { label: 'Cidade', accessor: 'city' },
+      { label: 'Estado', accessor: 'state' },
+      { label: 'Status', accessor: 'status' },
+      { label: 'Padrão', accessor: 'default' },
+      { label: 'Data de Criação', accessor: 'createdAt' },
+      { label: 'Data de Atualização', accessor: 'updatedAt' }
+    ]
+  );
+}
 
 function getColumnSorting(column, direction) {
   if (column.isSorted) {
@@ -102,9 +120,9 @@ function Table({ columns, data }) {
   );
 }
 
-function DataTableBuildings() {
-  const columns = getBuildingsColumns();
-  const data = getBuildings();
+function DataTableBuildings(buildingArr) {
+  const columns = setTableColumns();
+  const data = buildingArr.data;  
 
   return <Table columns={columns} data={data} />;
 }
