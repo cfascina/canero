@@ -1,29 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useTable, usePagination, useSortBy } from "react-table";
 
 function setTableColumns() {
-  return(
+  return (
     [
-      { label: 'Cód.', accessor: 'id' },
-      { label: 'Nome', accessor: 'name' },
-      { label: 'Endereço', accessor: 'address' },
-      { label: 'Número', accessor: 'number' },
-      { label: 'Complemento', accessor: 'complement' },
-      { label: 'CEP', accessor: 'zipCode' },
-      { label: 'Bairro', accessor: 'neighborhood' },
-      { label: 'Cidade', accessor: 'city' },
-      { label: 'Estado', accessor: 'state' },
-      { label: 'Status', accessor: 'status' },
-      { label: 'Padrão', accessor: 'default' },
-      { label: 'Data de Criação', accessor: 'createdAt' },
-      { label: 'Data de Atualização', accessor: 'updatedAt' }
+      {
+        accessor: 'id',
+        label: 'Ações',
+        disableSortBy: true,
+        Cell: ({ value }) => (
+          <div className="actions">
+            <Link to={`/obras/${value}/editar`}>Editar</Link>
+            <Link to={`/obras/${value}/detalhes`}>Detalhes</Link>
+          </div>
+        )
+      },
+      { accessor: 'name',         label: 'Nome' },
+      { accessor: 'city',         label: 'Cidade' },
+      { accessor: 'neighborhood', label: 'Bairro' },
+      { accessor: 'status',       label: 'Status' },
+      { accessor: 'default',      label: 'Padrão' }
     ]
   );
 }
 
 function getColumnSorting(column, direction) {
-  if (column.isSorted) {
-    if (column.isSortedDesc) {
+  if(column.isSorted) {
+    if(column.isSortedDesc) {
       return direction === "desc" ? "active" : "inactive";
     }
     else {
@@ -31,7 +35,7 @@ function getColumnSorting(column, direction) {
     }
   }
   else
-    return "inactive"
+    return "inactive";
 }
 
 function Table({ columns, data }) {
@@ -69,9 +73,14 @@ function Table({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  <span className={"sort " + getColumnSorting(column, "asc")}>&#9650;</span>
-                  <span className={"sort " + getColumnSorting(column, "desc")}>&#9660;</span>
-                  {column.render('label')}
+                  {
+                    column.id === "id" ? column.render("label") :
+                    <div>
+                      <span className={"sort " + getColumnSorting(column, "asc")}>&#9650;</span>
+                      <span className={"sort " + getColumnSorting(column, "desc")}>&#9660;</span>
+                      {column.render("label")}
+                    </div>
+                  }
                 </th>
               ))}
             </tr>
@@ -120,11 +129,11 @@ function Table({ columns, data }) {
   );
 }
 
-function DataTableBuildings(buildingArr) {
+function BuildingDataTable(buildingArr) {
   const columns = setTableColumns();
-  const data = buildingArr.data;  
+  const data = buildingArr.data;
 
   return <Table columns={columns} data={data} />;
 }
 
-export default DataTableBuildings;
+export default BuildingDataTable;

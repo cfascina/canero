@@ -1,25 +1,44 @@
 // Pages
-import Home from "../pages/Home";
-import Buildings from "../pages/Buildings";
+import BuildingDetails from "../pages/BuildingDetails";
+import BuildingEdit from "../pages/BuildingEdit";
+import BuildingList from "../pages/BuildingList";
 import Expenses from "../pages/Expenses";
+import Home from "../pages/Home";
 
 export const appRoutes = [
   {
     path: "/",
     name: "Início",
     component: Home,
-    exact: true
+    exact: true,
+    atSidebar: true
   },
   {
     path: '/obras',
     name: "Obras",
-    component: Buildings,
-    exact: false
+    component: BuildingList,
+    exact: true,
+    atSidebar: true
+  },
+  {
+    path: '/obras/:id/editar',
+    name: "Obras - Editar",
+    component: BuildingEdit,
+    exact: false,
+    atSidebar: false
+  },
+  {
+    path: '/obras/:id/detalhes',
+    name: "Obras - Detalhes",
+    component: BuildingDetails,
+    exact: false,
+    atSidebar: false
   },
   {
     path: '/gastos',
     name: "Gastos",
     component: Expenses,
-    exact: false
+    exact: false,
+    atSidebar: true
   }
 ];

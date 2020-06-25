@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import DataTableBuildings from "../components/datatables/DataTableBuildings";
 
-class Buildings extends Component {
+class BuildingList extends Component {
   constructor(props) {
     super(props);
 
@@ -30,4 +30,4 @@ class Buildings extends Component {
   }
 }
 
-export default Buildings;
+export default BuildingList;

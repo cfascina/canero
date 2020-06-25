@@ -46,10 +46,11 @@ class SideBar extends Component {
         </div>
         {
           this.props.items.map((route, index) => (
-            <NavLink key={index} to={route.path} exact={route.exact}>
-              <img src={this.getIcon(route.name)} alt={route.name} />
-              <span>{route.name}</span>
-            </NavLink>
+            route.atSidebar &&
+              <NavLink key={index} to={route.path} exact={route.exact}>
+                <img src={this.getIcon(route.name)} alt={route.name} />
+                <span>{route.name}</span>
+              </NavLink>
           ))
         }
       </nav>
