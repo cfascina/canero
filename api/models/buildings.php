@@ -26,36 +26,26 @@
     {
       $this->conn = $conn;
     }
-
-    // TO DO
+    
     public function getBuilding()
     {
-      $sqlQuery = "SELECT
-                          id, 
-                          name, 
-                          email, 
-                          age, 
-                          designation, 
-                          created
-                        FROM
-                          " . $this->table . "
-                      WHERE 
-                        id = ?
-                      LIMIT 0,1";
+      $sqlQuery = "
+        SELECT  B.*
+        FROM " . $this->table . " AS B
+        WHERE B.id = ? 
+        LIMIT 0, 1";
+   
+      $result = $this->conn->prepare($sqlQuery);
+      
+      // Sanitize and Bind Data
+      $this->id = htmlspecialchars(strip_tags($this->id));
+      $result->bindParam(1, $this->id);
 
-      $stmt = $this->conn->prepare($sqlQuery);
+      $result->execute();
+      return $result;
 
-      $stmt->bindParam(1, $this->id);
-
-      $stmt->execute();
-
-      $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      $this->name = $dataRow['name'];
-      $this->email = $dataRow['email'];
-      $this->age = $dataRow['age'];
-      $this->designation = $dataRow['designation'];
-      $this->created = $dataRow['created'];
+      // $buildingData = $result->fetch(PDO::FETCH_ASSOC);
+      // return $buildingData;
     }
 
     public function getBuildings()
@@ -99,6 +89,8 @@
       $this->neighborhood = htmlspecialchars(strip_tags($this->neighborhood));
       $this->city = htmlspecialchars(strip_tags($this->city));
       $this->state = htmlspecialchars(strip_tags($this->state));
+      $this->status = htmlspecialchars(strip_tags($this->status));
+      $this->default = htmlspecialchars(strip_tags($this->default));
 
       // Bind Data
       $result->bindParam(":name", $this->name);
@@ -143,6 +135,8 @@
       $this->neighborhood = htmlspecialchars(strip_tags($this->neighborhood));
       $this->city = htmlspecialchars(strip_tags($this->city));
       $this->state = htmlspecialchars(strip_tags($this->state));
+      $this->status = htmlspecialchars(strip_tags($this->status));
+      $this->default = htmlspecialchars(strip_tags($this->default));
 
       // Bind Data
       $result->bindParam(":id", $this->id);
@@ -155,12 +149,11 @@
       $result->bindParam(":city", $this->city);
       $result->bindParam(":state", $this->state);
       $result->bindParam(":status", $this->status);
-      $result->bindParam(":default", $this->status);
+      $result->bindParam(":default", $this->default);
 
       return $result->execute() ? true : false;
     }
 
-    // TO DO
     function deleteBuilding()
     {
       $sqlQuery = "
@@ -169,7 +162,8 @@
           
       $result = $this->conn->prepare($sqlQuery);
       
-      // Bind Data
+      // Sanitize and Bind Data
+      $this->id = htmlspecialchars(strip_tags($this->id));
       $result->bindParam(1, $this->id);
 
       return $result->execute() ? true : false;
